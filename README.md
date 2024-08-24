@@ -1,11 +1,8 @@
-Here's the content formatted as a `README.md` file:
-
-```markdown
-# Elastic Search
+### Elastic Search
 
 Elastic Search is a Django-based web application that integrates Elasticsearch to perform efficient and scalable search operations across a dataset of agricultural crops. The application provides a user-friendly interface for searching, filtering, and displaying crop information, including nutrient levels and other critical agricultural data.
 
-## Table of Contents
+### Table of Contents
 
 - [Features](#features)
 - [Demo](#demo)
@@ -16,7 +13,7 @@ Elastic Search is a Django-based web application that integrates Elasticsearch t
 - [License](#license)
 - [Contact](#contact)
 
-## Features
+### Features
 
 - **Elastic Search Integration**: Seamlessly integrated with Elasticsearch for fast and efficient search capabilities.
 - **User-Friendly Interface**: Intuitive and responsive UI for searching and viewing crop data.
@@ -132,7 +129,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For any inquiries or support, feel free to reach out:
 
 - **Author**: Abhisingh980
-- **Email**: [abhishek.yad.singh980@gmail.com](mailto:abhishek.yad.singh980@gmail.com)
+- **Email**: [deepabhineshacp@gmail.com](mailto:abhinesh)
 - **GitHub**: [Abhisingh980](https://github.com/Abhisingh980)
 ```
 
