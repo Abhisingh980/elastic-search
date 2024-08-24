@@ -72,7 +72,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-Visit [http://127.0.0.1:8000/](http://127.0.0.1:8000/) in your web browser to access the application.
+Visit [http://127.0.0.1:5050/](http://127.0.0.1:8000/) in your web browser to access the application.
 
 ## Usage
 
@@ -119,10 +119,6 @@ Contributions are welcome! To contribute:
 4. Push to your fork and submit a pull request.
 
 Please ensure your code adheres to the existing code style and include relevant test cases.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
