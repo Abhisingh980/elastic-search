@@ -26,6 +26,7 @@ def search(request):
     paginator = Paginator(crop, 6)
     kaggle = Paginator(kaggle_crop_detail, 6)
 
+
     page_number = request.GET.get('page')
     crops = paginator.get_page(page_number)
 
