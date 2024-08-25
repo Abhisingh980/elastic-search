@@ -16,6 +16,9 @@ class Crop(models.Model):
     def __str__(self):
         return self.crop_level
 
+    class Meta:
+        ordering = ['crop_level']
+
 class kagel_crop(models.Model):
     id = models.IntegerField(primary_key=True)
     image_path = models.CharField(max_length=100, blank=True, null=True)
@@ -24,3 +27,6 @@ class kagel_crop(models.Model):
 
     def __str__(self):
         return self.crop_name
+
+    class Meta:
+        ordering = ['crop_name']

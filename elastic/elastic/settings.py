@@ -37,12 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-
     'django.contrib.staticfiles',
-    'livereload',
 ]
 EXTRA_APP = [
+    'django_elasticsearch_dsl',
     'search',
+    'livereload',
 ]
 
 INSTALLED_APPS += EXTRA_APP
@@ -87,6 +87,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'http://localhost:9200'
+    },
 }
 
 
