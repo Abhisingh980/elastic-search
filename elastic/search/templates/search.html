@@ -1,12 +1,10 @@
-{% extends 'basetemplate/base.html' %} {% load static %} {% block content %}
+{% extends 'basetemplate/base.html' %}
+{% load static %}
+{% block content %}
 
 <div class="container">
     <h1 class="heading">Elastic Search</h1>
-    <form
-        action="{% url 'search' %}"
-        method="GET"
-        enctype="multipart/form-data"
-    >
+    <form action="{% url 'search' %}" method="GET" enctype="multipart/form-data">
         <input
             type="text"
             name="esearch"
@@ -22,7 +20,7 @@
     {% if crops %}
     <div class="container">
         <h1 class="heading_c">Crops</h1>
-        <div class="crops-container">
+        <div id="crops-container" class="crops-container">
             {% for crop in crops %}
             <div class="crop-item">
                 <div class="crop-card">
@@ -41,19 +39,27 @@
                         </tr>
                         <tr>
                             <td class="label">Tem:</td>
-                            <td class="value">{{ crop.crop_temperature }}</td>
+                            <td class="value">
+                                {{ crop.crop_temperature|floatformat:2 }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">Hum:</td>
-                            <td class="value">{{ crop.crop_humidity }}</td>
+                            <td class="value">
+                                {{ crop.crop_humidity|floatformat:2 }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">RainFall:</td>
-                            <td class="value">{{ crop.crop_rainfall }}</td>
+                            <td class="value">
+                                {{ crop.crop_rainfall|floatformat:2 }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">Ph:</td>
-                            <td class="value">{{ crop.crop_ph }}</td>
+                            <td class="value">
+                                {{ crop.crop_ph|floatformat:2 }}
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">Level:</td>
@@ -64,76 +70,21 @@
             </div>
             {% endfor %}
         </div>
-    </div>
-
-    {% endif %}
-    <nav aria-label="Crops pagination">
-        <ul class="pagination">
-            {% if has_previous_crops %}
-            <li class="page-item">
-                <a
-                    class="page-link"
-                    href="?page_crops={{ previous_page_number_crops }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}"
-                    aria-label="Previous"
-                >
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-                <span class="page-link" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </span>
-            </li>
-            {% endif %} {% if page_range_to_show_crops.0 > 1 %}
-            <li class="page-item disabled">
-                <span class="page-link">...</span>
-            </li>
-            {% endif %} {% for page_num in page_range_to_show_crops %}
-            <li
-                class="page-item {% if crops.number == page_num %}active{% endif %}"
-            >
-                <a
-                    class="page-link"
-                    href="?page_crops={{ page_num }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}"
-                >
-                    {{ page_num }}
-                </a>
-            </li>
-            {% endfor %} {% if page_range_to_show_crops < 300 %}
-            <li class="page-item disabled">
-                <span class="page-link">...</span>
-            </li>
-            {% endif %} {% if has_next_crops %}
-            <li class="page-item">
-                <a
-                    class="page-link"
-                    href="?page_crops={{ next_page_number_crops }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}"
-                    aria-label="Next"
-                >
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-                <span class="page-link" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </span>
-            </li>
+        <div class="pagination">
+            {% if page_number > 1 %}
+                <a class="page-link" href="?page={{ page_number|add:"-1" }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}">Previous</a>
             {% endif %}
+            <a class="page-link" href="?page={{ page_number|add:"1" }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}">Next</a>
+            <span class="total-pages">Page {{ page_number }} of {{ total_page_crop }}</span>
+        </div>
 
-            <!-- Add total pages -->
-            <li class="page-item disabled">
-                <span class="page-link"
-                    >Total: {{ total_page_number_crops }}</span
-                >
-            </li>
-        </ul>
-    </nav>
+    </div>
+    {% endif %}
+
     {% if kaggle_crops %}
     <div class="container">
         <h1 class="heading_k">Crops image</h1>
-        <div class="kaggle-container">
+        <div id="kaggle-container" class="kaggle-container">
             {% for kcrop in kaggle_crops %}
             <div class="kaggle-item">
                 <div class="kaggle-card">
@@ -160,70 +111,16 @@
             </div>
             {% endfor %}
         </div>
+        <div class="pagination">
+            {% if page_number > 1 %}
+                <a class="page-link" href="?page={{ page_number|add:"-1" }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}">Previous</a>
+            {% endif %}
+            <a class="page-link" href="?page={{ page_number|add:"1" }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}">Next</a>
+            <span class="total-pages">Page {{ page_number }} of {{ total_page_kagel_crop }}</span>
+        </div>
+
     </div>
     {% endif %}
 </div>
-
-<nav aria-label="Kaggle Crop Details pagination">
-    <ul class="pagination">
-        {% if has_previous_kaggle %}
-        <li class="page-item">
-            <a
-                class="page-link"
-                href="?page_kaggle={{ previous_page_number_kaggle }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}"
-                aria-label="Previous"
-            >
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <span class="page-link" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </span>
-        </li>
-        {% endif %} {% if page_range_to_show_kaggle.0 > 1 %}
-        <li class="page-item disabled">
-            <span class="page-link">...</span>
-        </li>
-        {% endif %} {% for page_num in page_range_to_show_kaggle %}
-        <li
-            class="page-item {% if kaggle_crops.number == page_num %}active{% endif %}"
-        >
-            <a
-                class="page-link"
-                href="?page_kaggle={{ page_num }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}"
-            >
-                {{ page_num }}
-            </a>
-        </li>
-        {% endfor %} {% if page_range_to_show_kaggle < 100%}
-        <li class="page-item disabled">
-            <span class="page-link">...</span>
-        </li>
-        {% endif %} {% if has_next_kaggle %}
-        <li class="page-item">
-            <a
-                class="page-link"
-                href="?page_kaggle={{ next_page_number_kaggle }}{% if request.GET.esearch %}&esearch={{ request.GET.esearch }}{% endif %}"
-                aria-label="Next"
-            >
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <span class="page-link" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </span>
-        </li>
-        {% endif %}
-
-        <!-- Add total pages -->
-        <li class="page-item disabled">
-            <span class="page-link">Total: {{ total_page_number_kaggle }}</span>
-        </li>
-    </ul>
-</nav>
 
 {% endblock %}

@@ -239,72 +239,41 @@ form button:hover {
 /* Pagination Styling */
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
     padding: 20px 0;
-    background-color: #0a0a0a;
-}
-
-.page-item {
-    margin: 0 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: #a19a89;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(24, 25, 25, 1.1);
+    margin-top: 20px;
 }
 
 .page-link {
-    padding: 10px 15px;
+    padding: 10px 20px;
+    margin: 10px;
     font-size: 1rem;
+    color: #121211;
+    background-color: #2980b9;
     text-decoration: none;
-    border: 1px solid #ddd;
     border-radius: 5px;
     transition: all 0.3s ease;
+    margin: 0 5px;
 }
 
 .page-link:hover {
-    background-color: #13e60b;
-    color: #fff;
+    background-color: #ab9b71;
     transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2);
 }
 
-.page-item.active .page-link {
+.total-pages {
+    color: #121211;
+    font-size: 1rem;
     font-weight: bold;
-    font-size: 1.1rem;
-    background-color: #13f055;
-    color: black;
-    border: 1px solid #13f055;
-    cursor: default;
-    /* zoom in effect */
-    transform: scale(1.5);
-}
-
-.page-item.disabled .page-link {
-    color: #549c69;
-    background-color: #1b300a;
-    border: 1px solid #ddd;
-    border-color: #e60939;
-    cursor: not-allowed;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    form input[type="text"] {
-        width: 100%;
-    }
-
-    .pagination {
-        flex-wrap: wrap;
-    }
-
-    .page-link {
-        margin: 5px;
-    }
-}
-
-/* Keyframe Animations */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    margin-left: 10px;
+    margin-left: auto;
+    padding-right: 10px;
 }

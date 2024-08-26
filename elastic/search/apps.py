@@ -7,4 +7,3 @@ class SearchConfig(AppConfig):
 
     def ready(self):
         import search.document
-        print("Document created successfully")
